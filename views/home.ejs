@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<!-- component -->
+<nav
+    class="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-green-700 shadow sm:items-baseline w-full">
+    <div class="sm:mb-0 flex items-center">
+        <a href="https://enengspl.com/"><img
+                src="https://enengspl.com/wp-content/uploads/2021/07/ENEN-Logo-White-1-300x241.jpg"
+                style="height: 60px;" alt="" srcset=""></a>
+        <a href="https://enengspl.com/" class="text-2xl no-underline pl-2 text-grey-darkest hover:text-blue-dark">
+            Enengspl</a>
+    </div>
+</nav>
+<script>
+    let subjectObject1 = {
+        "Scooter": {
+            "Less than 150cc": ["Petrol"]
+        },
+        "Motorcycle": {
+            "Less than 200cc": ["Petrol"],
+            "More than 200cc": ["Petrol"]
+        }
+    }
+    let subjectObject2 = {
+        "Hatchback": {
+            "Less than 1000cc": ["Petrol", "CNG", "Diesel"],
+            "More than 1000cc": ["Petrol", "CNG", "Diesel"]
+        },
+        "Sedan": {
+            "Less than 2000cc": ["Petrol", "Diesel"],
+            "More than 2000cc": ["Petrol", "Diesel"],
+            "Premium": ["Petrol", "Diesel"]
+        },
+        "Suv": {
+            "Less than 2000cc": ["Petrol", "Diesel"],
+            "More than 2000cc": ["Petrol", "Diesel"],
+            "Premium": ["Petrol", "Diesel"]
+        }
+    }
+    window.onload = function () {
+        let subjectSel1 = document.getElementById("t-v");
+        let topicSel1 = document.getElementById("t-e");
+        let chapterSel1 = document.getElementById("t-f");
+        for (var x in subjectObject1) {
+            subjectSel1.options[subjectSel1.options.length] = new Option(x, x);
+        }
+        subjectSel1.onchange = function () {
+            //empty Chapters- and Topics- dropdowns
+            chapterSel1.length = 1;
+            topicSel1.length = 1;
+            //display correct values
+            for (var y in subjectObject1[this.value]) {
+                topicSel1.options[topicSel1.options.length] = new Option(y, y);
+            }
+        }
+        topicSel1.onchange = function () {
+            //empty Chapters dropdown
+            chapterSel1.length = 1;
+            //display correct values
+            let z = subjectObject1[subjectSel1.value][this.value];
+            for (var i = 0; i < z.length; i++) {
+                chapterSel1.options[chapterSel1.options.length] = new Option(z[i], z[i]);
+            }
+        }
+
+        let subjectSel2 = document.getElementById("c-v");
+        let topicSel2 = document.getElementById("c-e");
+        let chapterSel2 = document.getElementById("c-f");
+        for (var x in subjectObject2) {
+            subjectSel2.options[subjectSel2.options.length] = new Option(x, x);
+        }
+        subjectSel2.onchange = function () {
+            //empty Chapters- and Topics- dropdowns
+            chapterSel2.length = 1;
+            topicSel2.length = 1;
+            //display correct values
+            for (var y in subjectObject2[this.value]) {
+                topicSel2.options[topicSel2.options.length] = new Option(y, y);
+            }
+        }
+        topicSel2.onchange = function () {
+            //empty Chapters dropdown
+            chapterSel2.length = 1;
+            //display correct values
+            let z = subjectObject2[subjectSel2.value][this.value];
+            for (var i = 0; i < z.length; i++) {
+                chapterSel2.options[chapterSel2.options.length] = new Option(z[i], z[i]);
+            }
+        }
+    }
+</script>
+<!-- component -->
+<div
+    style="background-image: url('https://images.unsplash.com/photo-1555465910-31f7f20a184d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=990&q=80');">
+
+    <div class="w-1/9 mx-auto rounded">
+        <!-- Tabs -->
+        <ul id="tabs" class="flex justify-center w-full px-1 pt-2 ">
+            <li class="px-4 py-2 -mb-px font-semibold text-gray-800 border-b-2 border-green-400 rounded-t opacity-50">
+                <a class='py-2 px-6 bg-white rounded-t-lg' id="default-tab" href="#first">Car</a>
+            </li>
+            <li class="px-4 py-2 font-semibold text-gray-800 rounded-t border-green-400 opacity-50"><a
+                    class='py-2 px-6 bg-white rounded-t-lg' href="#second">Two Wheeler</a></li>
+        </ul>
+
+        <!-- Tab Contents -->
+        <div id="tab-contents">
+            <div id="first" class="p-4">
+                <!-- First tab -->
+                <div id="main-div2"
+                    class='flex max-w-sm w-full bg-white border-4 border-green-600  shadow-md rounded-lg overflow-hidden mx-auto'>
+                    <div class='w-2 bg-green-600'></div>
+
+                    <div class='flex items-center px-8 py-8'>
+                        <form class="w-full max-w-lg">
+                            <div class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2">Car</div>
+                            <div class="flex flex-wrap -mx-3 mb-3">
+                                <!-- component -->
+                                <!-- This is an example component -->
+                                <div class="relative">
+                                    <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <div class="grid grid-cols-2 mb-4">
+                                        <p class="col-span-1">Type Of Car</p>
+                                        <select id="c-v" onchange="carcalc()"
+                                            class="col-span-1 border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                            <option>Type of Car</option>
+                                        </select>
+                                    </div>
+                                    <svg class="w-2 h-2 absolute top-15 right-0 m-4 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <div class="grid grid-cols-2  mb-4">
+                                        <p class="col-span-1">Engine Capacity</p>
+                                        <select id="c-e" onchange="carcalc()"
+                                            class="col-span-1 border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                            <option value="">Select Engine Capacity</option>
+                                        </select>
+                                    </div>
+                                    <svg class="w-2 h-2 absolute top-30 right-0 m-4 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <div class="grid grid-cols-2  mb-4">
+                                        <p class="col-span-1">Fuel</p>
+                                        <select id="c-f" onchange="carcalc()"
+                                            class="border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                            <option>Type Of Fuel</option>
+                                        </select>
+                                    </div>
+
+                                    <svg class="w-2 h-2 absolute top-30 right-0 m-4 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <div class="grid grid-cols-2 mb-4">
+                                        <p class="col-span-1">Weekly Distance Travelled</p>
+                                        <input onchange="carcalc(),addTotal2()" oninput="carcalc(),addTotal2()" id="c-d" type="number"
+                                            class="border pl-3 border-gray-300">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="text-xl font-bold text-center">Neutralise <span
+                                        id="car-co2" oninput="vehiclecalc(),addTotal2()" onchange="addTotal2()">0</span> Kg <span>of Monthly CO2 Emission of your vechile at the price given below.</span><br> 
+                                        </div>
+
+
+
+                            </div>
+                            <div class="text-xl font-bold text-center text-red-600"> <span id="validcheck1"
+                                    oninput="vehiclecalc()"></span></div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <div id="second" class="hidden p-4">
+                <!-- Second tab -->
+
+                <div id="main-div1"
+                    class='flex max-w-sm w-full bg-white border-4 border-green-600 shadow-md rounded-lg overflow-hidden mx-auto'>
+                    <div class='w-2 bg-green-600'></div>
+
+                    <div class='flex items-center px-8 py-8'>
+                        <form class="w-full max-w-lg">
+                            <div class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2">Two Wheeler
+                            </div>
+                            <div class="flex flex-wrap -mx-3 mb-3">
+                                <!-- component -->
+                                <!-- This is an example component -->
+                                <div class="relative">
+                                    <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <div class="grid grid-cols-2 mb-4">
+                                        <p class="col-span-1">Vehicle Category</p>
+                                        <select id="t-v" onchange="vehiclecalc(this.value)"
+                                            class="col-span-1 border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                            <option>Type of Vehicle</option>
+                                        </select>
+                                    </div>
+                                    <svg class="w-2 h-2 absolute top-15 right-0 m-4 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <div class="grid grid-cols-2  mb-4">
+                                        <p class="col-span-1">Engine Capacity</p>
+                                        <select id="t-e" onchange="vehiclecalc(this.value)"
+                                            class="col-span-1 border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                            <option value="">Type of engine</option>
+                                        </select>
+                                    </div>
+                                    <svg class="w-2 h-2 absolute top-30 right-0 m-4 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <div class="grid grid-cols-2  mb-4">
+                                        <p class="col-span-1">Fuel</p>
+                                        <select id="t-f" onchange="vehiclecalc(this.value)"
+                                            class="border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                            <option value="">Fuel Type</option>
+                                        </select>
+                                    </div>
+
+                                    <svg class="w-2 h-2 absolute top-30 right-0 m-4 pointer-events-none"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                                        <path
+                                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                            fill="#648299" fill-rule="nonzero" />
+                                    </svg>
+                                    <div class="grid grid-cols-2  mb-4">
+                                        <p class="col-span-1">Weekly Distance Travelled</p>
+                                        <input oninput="vehiclecalc(),addTotal2()" onchange="vehiclecalc(this.value),addTotal2()" id="t-d"
+                                            type="number" class="border pl-3 border-gray-300" />
+                                    </div>
+                                </div>
+
+                                <div class="text-xl font-bold text-center">Neutralise <span
+                                        id="two-wheeler-co2" oninput="vehiclecalc()">0</span> Kg <span>of Monthly CO2 Emission of your vechile at the price given below.</span>
+                                    <br></div>
+
+                            </div>
+                            <div class="text-xl font-bold text-center text-red-600"> <span id="validcheck"
+                                    oninput="vehiclecalc()"></span></div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- component -->
+<style>
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css);
+    </style>
+    
+        <div class="w-full mx-auto rounded-lg bg-white shadow-lg px-5 pt-5 pb-10 text-black" style="max-width: 400px">
+            <div class="w-full pt-1 pb-5">
+                
+            </div>
+            <div class="w-full mb-10">
+                <div class="text-3xl text-indigo-500 text-left leading-tight h-3">“</div>
+                <p class="text-xl font-bold text-center"><span
+                    id="totallast"  onchange="addTotal2()">0</span> Kg CO2 <span>of Total Car and Two Wheeler</span></p>
+                <div class="text-3xl text-indigo-500 text-right leading-tight h-3 -mt-3">”</div>
+            </div>
+            
+        </div>
+    
+    
+    <!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
+    
+   
+  
+    <div class="flex mt-7 justify-center">
+        <button onclick="pay()" class="border mb-3 bg-black text-white border-gray-400 rounded py-3 px-4">Pay Now
+            <span id="total-sum">0</span> ₹
+        </button>
+    </div>
+
+</div>
+</div>
+
+</div>
+
+
+
+<script>
+    let tabsContainer = document.querySelector("#tabs");
+
+    let tabTogglers = tabsContainer.querySelectorAll("a");
+    console.log(tabTogglers);
+
+    tabTogglers.forEach(function (toggler) {
+        toggler.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            let tabName = this.getAttribute("href");
+
+
+
+            let tabContents = document.querySelector("#tab-contents");
+
+            for (let i = 0; i < tabContents.children.length; i++) {
+
+                tabTogglers[i].parentElement.classList.remove("border-blue-400", "border-b", "-mb-px", "opacity-100"); tabContents.children[i].classList.remove("hidden");
+                if ("#" + tabContents.children[i].id === tabName) {
+                    continue;
+                }
+                tabContents.children[i].classList.add("hidden");
+
+            }
+            e.target.parentElement.classList.add("border-blue-400", "border-b-4", "-mb-px", "opacity-100");
+        });
+    });
+
+    document.getElementById("default-tab").click();
+
+</script>
+
+
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+    function co2_cal(vehicle, engine, fuel) {
+        let data = {
+            "Scooter": {
+                "Less than 150cc": {
+                    "Petrol": 0.0378
+                }
+            },
+            "Motorcycle": {
+                "Less than 200cc": {
+                    "Petrol": 0.0373
+                },
+                "More than 200cc": {
+                    "Petrol": 0.0596
+                }
+            },
+            "Hatchback": {
+                "Less than 1000cc": {
+                    "Petrol": 0.119,
+                    "CNG": 0.068,
+                    "Diesel": 0.113
+                },
+                "More than 1000cc": {
+                    "Petrol": 0.151,
+                    "CNG": 0.086,
+                    "Diesel": 0.137
+                }
+            },
+            "Sedan": {
+                "less than 2000cc": {
+                    "Petrol": 0.153,
+                    "Diesel": 0.136
+                },
+                "more than 2000cc": {
+                    "Petrol": 0.169,
+                    "Diesel": 0.160
+                },
+                "Premium": {
+                    "Petrol": 0.229,
+                    "Diesel": 0.196
+                }
+            },
+            "Suv": {
+                "Less than 2000cc": {
+                    "Petrol": 0.203,
+                    "Diesel": 0.201
+                },
+                "More than 2000cc": {
+                    "Petrol": 0.222,
+                    "Diesel": 0.215
+                },
+                "Premium": {
+                    "Petrol": 0.259,
+                    "Diesel": 0.231
+                }
+            }
+        }
+        try {
+            const res = data[vehicle][engine][fuel];
+            console.log(res);
+            return res;
+        } catch (error) {
+            console.log('error')
+        }
+    }
+
+
+    const vehiclecalc = (valNum) => {
+        valNum = parseFloat(valNum);
+
+        const vehicle = document.getElementById("t-v").value;
+        const engine = document.getElementById("t-e").value;
+        const fuel = document.getElementById("t-f").value;
+        const distance = document.getElementById("t-d").value;
+        const co2 = co2_cal(vehicle, engine, fuel);
+        if (!co2) {
+            const ele = document.getElementById("main-div1");
+            ele.classList.remove("border-green-600");
+            ele.classList.add("border-red-600");
+            document.getElementById("validcheck").innerHTML = "Not a valid selection";
+            document.getElementById("two-wheeler-co2").innerHTML = 0;
+            return 1;
+        } else {
+            const ele = document.getElementById("main-div1");
+            ele.classList.add("border-green-600");
+            document.getElementById("validcheck").innerHTML = "";
+        }
+
+        document.getElementById("two-wheeler-co2").innerHTML = Math.round(distance * co2 * 4.3);
+        addTotal();
+        console.log(co2);
+        return co2;
+    }
+
+    const carcalc = () => {
+        const vehicle = document.getElementById("c-v").value;
+        const engine = document.getElementById("c-e").value;
+        const fuel = document.getElementById("c-f").value;
+        const distance = document.getElementById("c-d").value;
+        const co2 = co2_cal(vehicle, engine, fuel);
+        if (!co2) {            //
+
+            const ele = document.getElementById("main-div2");
+            ele.classList.remove("border-green-600");
+            ele.classList.add("border-red-600");
+            document.getElementById("validcheck1").innerHTML = "Not a valid selection";
+            document.getElementById("car-co2").innerHTML = 0;
+            return 1;
+        } else {
+            const ele = document.getElementById("main-div2");
+            ele.classList.add("border-green-600");
+            document.getElementById("validcheck1").innerHTML = " ";
+        }
+        document.getElementById("car-co2").innerHTML = Math.round(distance * co2 * 4.3);
+        addTotal();
+        return co2;
+    }
+
+
+
+    function addTotal() {
+        let sum1 = Number(document.getElementById("car-co2").innerHTML);
+        let sum2 = Number(document.getElementById("two-wheeler-co2").innerHTML);
+        let sum = (sum1 + sum2 );
+        sum = Math.round(sum);
+        document.getElementById("total-sum").innerHTML = (Math.round(sum * 0.08 * 4.3));
+    }
+
+
+    function pay() {
+        const data1 = vehiclecalc();
+        const data2 = carcalc();
+        if (data1 && data2) {
+            let amount = Number(document.getElementById("total-sum").innerHTML);
+            payment(amount)
+        } else {
+            alert('select all options')
+        }
+    }
+    async function payment(total) {
+        let response = await fetch('/razorpay', {
+            method: 'POST',
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ amount: total })
+        });
+        const data = await response.json();
+        console.log(data)
+        var options = {
+            "key": "rzp_live_fXlQdaaaEiPXWx", // Enter the Key ID generated from the Dashboard
+            "amount": data.amount.toString(), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Company Name",
+            "description": "Payment",
+            "image": "",
+            "order_id": data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": async function (response) {
+                // alert(response.razorpay_payment_id);
+                // alert(response.razorpay_order_id);
+                // alert(response.razorpay_signature);
+                const params = {
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_signature: response.razorpay_signature,
+                };
+                checkPayment(params).then(res => {
+                    console.log(res)
+                    alert(res.status);
+                    if (res.status === 'success') {
+                        window.location.replace("https://enengspl.com/");
+                    }
+                });
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', async function (response) {
+            alert(response.error.code);
+            // alert(response.error.description);
+            // alert(response.error.source);
+            // alert(response.error.step);
+            // alert(response.error.reason);
+            // alert(response.error.metadata.order_id);
+            // alert(response.error.metadata.payment_id);
+            alert('failure');
+        });
+        rzp1.open();
+        // document.getElementById('rzp-button1').onclick = function (e) {
+        //     rzp1.open();
+        //     e.preventDefault();
+        // }
+    }
+    const checkPayment = async function (params) {
+        const res = await fetch('/api/payment/verify', {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(params)
+        })
+        const check = await res.json();
+        return check;
+    }
+</script>
+
+
+
+
+
+<div>
+    <img src="https://i.ibb.co/DQ4FZhL/pattern-bg.png" alt="blue pattern background"
+        class="absolute w-full h-64 md:h-96 object-center object-fit z-0" />
+    <div class="relative flex flex-col items-center justify-center sm:px-0 px-6 z-20 pb-32">
+        <div class="md:py-36 py-20">
+            <h1 role="heading" class="xl:text-6xl md:text-5xl text-xl font-bold leading-10 text-white">Frequently
+                asked questions</h1>
+        </div>
+        <div class="lg:w-1/2 md:w-8/12 sm:w-9/12 w-full">
+            <div class="bg-white shadow rounded p-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-semibold leading-none text-gray-800">1.	What is carbon footprint?
+                            </h2>
+                    </div>
+                    <button data-menu
+                        class="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
+                        <svg role="button" aria-label="close dropdown" class="hidden" width="10" height="6"
+                            viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5L5 1L9 5" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg width="10" role="button" aria-label="open dropdown" height="6" viewBox="0 0 10 6"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="hidden">
+                    <li>
+                        <p class="text-base leading-normal text-gray-600 mt-4 lg:w-96">A carbon footprint is the total greenhouse gas (GHG) emissions caused by an individual, event, organization, service, place, or product, expressed as carbon dioxide equivalent (CO2e).</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded p-8 mt-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-semibold leading-none text-gray-800">2.	What is carbon neutrality?</h2>
+                    </div>
+                    <button data-menu
+                        class="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
+                        <svg role="button" aria-label="close dropdown" class="hidden" width="10" height="6"
+                            viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5L5 1L9 5" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg width="10" role="button" aria-label="open dropdown" height="6" viewBox="0 0 10 6"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="hidden">
+                    <li>
+                        <p class="text-base leading-normal text-gray-600 mt-4 lg:w-96">Carbon neutrality is a state of net-zero carbon emissions. This can be achieved by balancing emissions of carbon dioxide with its removal or by eliminating emissions from society.
+
+</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded p-8 mt-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-semibold leading-none text-gray-800">3.	How is carbon emission of a car calculated?
+                        </h2>
+                    </div>
+                    <button data-menu
+                        class="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
+                        <svg role="button" aria-label="close dropdown" class="hidden" width="10" height="6"
+                            viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5L5 1L9 5" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg width="10" role="button" aria-label="open dropdown" height="6" viewBox="0 0 10 6"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="hidden">
+                    <li>
+                        <p class="text-base leading-normal text-gray-600 mt-4 lg:w-96">Carbon emission of a car is measured by undertaking a GHG emissions assessment, a life cycle assessment, and other calculative activities denoted as carbon accounting. The standards for the calculation is set by ISO.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded p-8 mt-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-semibold leading-none text-gray-800">4.	Can I make my car completely carbon neutral?</h2>
+                    </div>
+                    <button data-menu
+                        class="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
+                        <svg role="button" aria-label="close dropdown" class="hidden" width="10" height="6"
+                            viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5L5 1L9 5" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg width="10" role="button" aria-label="open dropdown" height="6" viewBox="0 0 10 6"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="hidden">
+                    <li>
+                        <p class="text-base leading-normal text-gray-600 mt-4 lg:w-96">Yes, you can. However, the process is quite complicated and consumes a lot of time.</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded p-8 mt-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-semibold leading-none text-gray-800">5.	Why should I use My Car Carbon Neutral?</h2>
+                    </div>
+                    <button data-menu
+                        class="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
+                        <svg role="button" aria-label="close dropdown" class="hidden" width="10" height="6"
+                            viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5L5 1L9 5" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg width="10" role="button" aria-label="open dropdown" height="6" viewBox="0 0 10 6"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="hidden">
+                    <li>
+                        <p class="text-base leading-normal text-gray-600 mt-4 lg:w-96">You can neutralize your car’s carbon emission by using just few simple steps which will save you a lot of time and hassle. My Car Carbon Neutral has put in place a robust system to take care of all the complicated processes on your behalf and for your convenience.
+</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded p-8 mt-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-semibold leading-none text-gray-800">6.	How is the carbon emission of a car neutralized?</h2>
+                    </div>
+                    <button data-menu
+                        class="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
+                        <svg role="button" aria-label="close dropdown" class="hidden" width="10" height="6"
+                            viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5L5 1L9 5" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg width="10" role="button" aria-label="open dropdown" height="6" viewBox="0 0 10 6"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="hidden">
+                    <li>
+                        <p class="text-base leading-normal text-gray-600 mt-4 lg:w-96">My Car Carbon Neutral is associated with various carbon offsetting projects around the world which will be used to offset your car’s carbon emission. All the projects are verified and registered under International Carbon Regulation bodies.
+
+</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded p-8 mt-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-semibold leading-none text-gray-800">7.	How do I know my car is carbon neutral?</h2>
+                    </div>
+                    <button data-menu
+                        class="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
+                        <svg role="button" aria-label="close dropdown" class="hidden" width="10" height="6"
+                            viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5L5 1L9 5" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg width="10" role="button" aria-label="open dropdown" height="6" viewBox="0 0 10 6"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="hidden">
+                    <li>
+                        <p class="text-base leading-normal text-gray-600 mt-4 lg:w-96">We release a Carbon Neutrality Certificate in your name with UC number and your car’s number to your email id within 48hrs of successful completion of payment.
+
+</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded p-8 mt-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-semibold leading-none text-gray-800">8.	What payment methods can I use?</h2>
+                    </div>
+                    <button data-menu
+                        class="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
+                        <svg role="button" aria-label="close dropdown" class="hidden" width="10" height="6"
+                            viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5L5 1L9 5" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg width="10" role="button" aria-label="open dropdown" height="6" viewBox="0 0 10 6"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="hidden">
+                    <li>
+                        <p class="text-base leading-normal text-gray-600 mt-4 lg:w-96">We accept all major payment methods like Debit Card, Credit Card, UPI, Net Banking, e-Wallets and Pay Later.
+
+</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded p-8 mt-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-semibold leading-none text-gray-800">9.	Are the transaction processes of the website safe?</h2>
+                    </div>
+                    <button data-menu
+                        class="focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 ring-offset-white cursor-pointer">
+                        <svg role="button" aria-label="close dropdown" class="hidden" width="10" height="6"
+                            viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5L5 1L9 5" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg width="10" role="button" aria-label="open dropdown" height="6" viewBox="0 0 10 6"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L5 5L9 1" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+                <ul class="hidden">
+                    <li>
+                        <p class="text-base leading-normal text-gray-600 mt-4 lg:w-96">All the transactions carried out on the Razorpay platform. Razorpay transactions are secured by an industry standard 100% PCI DSS compliant & certified solution. They use the highest assurance SSL certificate on its website which is the EV SSL (Extended Validity SSL) certificate. The also use industry standard measures to protect the Personal Information that is stored in their database.
+
+</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" static bottom-0 w-full bg-gray-500 h-16  flex justify-center items-center">2021 ©️ enengspl.com
+
+    <script>let elements = document.querySelectorAll("[data-menu]");
+
+        for (let i = 0; i < elements.length; i++) {
+            let main = elements[i];
+            main.addEventListener("click", function () {
+                let element = main.parentElement.parentElement;
+                let andicators = main.querySelectorAll("svg");
+                let child = element.querySelector("ul");
+                let fontColor = element.querySelector("h2");
+                child.classList.toggle("hidden");
+                if (child.classList[0] !== "hidden") {
+                    andicators[0].style.display = "block";
+                    andicators[1].style.display = "none";
+                    fontColor.style.color = "#3730A3";
+                } else {
+                    andicators[0].style.display = "none";
+                    andicators[1].style.display = "block";
+                    fontColor.style.color = "#1F2937";
+                }
+            });
+        }
+        
+        function addTotal2() {
+        let sum1 = Number(document.getElementById("car-co2").innerHTML);
+        let sum2 = Number(document.getElementById("two-wheeler-co2").innerHTML);
+        let sum = (sum1 + sum2 );
+        sum = Math.round(sum);
+        document.getElementById("totallast").innerHTML = (Math.round(sum));
+    }
+        
+        </script>
+    </body>
+
+</html>
